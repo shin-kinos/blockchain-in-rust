@@ -2,13 +2,13 @@
 use chrono::{ DateTime, Utc }; // For ISO time generation
 use std::collections::HashMap; // For HashMap
 
-const ASSET_COMPOSITION : [ &str; 2 ] = [ "Owner", "Amount" ];
+const ASSET_COMPOSITION : [ &str; 3 ] = [ "Name", "Type", "Quantity" ];
 
 pub fn define_asset_keys() -> Vec<String> {
 	let mut keys : Vec<String> = Vec::new();
 	for key in ASSET_COMPOSITION { keys.push( key.to_string() ); }
 
-	keys
+	return keys;
 }
 
 pub fn get_iso_timestamp() -> String {
@@ -16,7 +16,7 @@ pub fn get_iso_timestamp() -> String {
 	let now_iso : String        = now.to_rfc3339();
 	//println!( "{}", now_iso );
 
-	now_iso
+	return now_iso;
 }
 
 pub fn stringfy_hashmap( hashmap : &HashMap<String, String> ) -> String {
@@ -47,5 +47,5 @@ pub fn stringfy_hashmap( hashmap : &HashMap<String, String> ) -> String {
 	hashmap_str.push_str( "}" );
 
 	//println!( "{}", hashmap_str );
-	hashmap_str
+	return hashmap_str;
 }
