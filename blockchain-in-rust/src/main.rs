@@ -10,13 +10,20 @@ fn main() {
 		"Octopus",        // Asset type
 		"3"               // Asset quantity
 	);
-	blockchain_freddie.get_current_block();
-	blockchain_freddie.update_asset( "name", "Coconut octopus" );
-	blockchain_freddie.get_all_blocks();
+	//blockchain_freddie.show_current_block();
+
+	// Update asset name into Cononut octopus
+	blockchain_freddie.update_asset( "name", "Webfoot octopus" );
+	//blockchain_freddie.show_all_blocks();
+
+	// Update assset quantity into 5
+	blockchain_freddie.update_asset( "quantity", "5" );
+	blockchain_freddie.show_all_blocks();
 	blockchain_freddie.check_chain_valid();
 
 	// Let's try to falsify!
-	println!( "\nNow try to falsify the quantity into 25:" );
+	/*
+	println!( "\nNow try to falsify the quantity into 25..." );
 	let last_block_elem = ( blockchain_freddie.blockchain ).len() - 1;
 	( ( ( blockchain_freddie.blockchain )[ last_block_elem ] )
 		.asset )
@@ -24,8 +31,9 @@ fn main() {
 				"quantity".to_string(),
 				"25".to_string()
 			);
-	
-	// Show current asset again
-	blockchain_freddie.get_current_block();
+	blockchain_freddie.show_current_block();
 	blockchain_freddie.check_chain_valid();
+	*/
+
+
 }

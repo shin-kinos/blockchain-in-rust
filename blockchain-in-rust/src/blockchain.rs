@@ -67,7 +67,7 @@ impl Blockchain {
 		let timestamp : String = utils::get_iso_timestamp();
 
 		// Get previous hash (but genesis block might not have previous hash!)
-		let previous_hash : String = "Genesis block".to_string();
+		let previous_hash : String = "genesis-block".to_string();
 
 		// Assign components into Block
 		block.owner         = owner;
@@ -85,12 +85,12 @@ impl Blockchain {
 		// push genesis block into blockchain
 		blockchain.push( block );
 
-		println!( "Genesis block is created!" );
+		println!( "Genesis block is {}successfully{} created!\n", GREEN, RESET );
 
 		return Blockchain { blockchain : blockchain, };
 	}
 
-	pub fn get_current_block( &self ) {
+	pub fn show_current_block( &self ) {
 		// Index of last element blockchain
 		let index_last = ( self.blockchain ).len();
 
@@ -107,17 +107,20 @@ impl Blockchain {
 		println!( "{}Previous hash{}: {}", GREEN, RESET, (   *current_block ).previous_hash         );
 	}
 
-	pub fn get_all_blocks( &self ) {
+	pub fn show_all_blocks( &self ) {
+		let mut block_number : usize = 1;
 		for block in ( self.blockchain ).iter() {
-			println!( "{}Owner{}: {}",           GREEN, RESET, (   *block ).owner                 );
-			println!( "{}Index{}: {}",           GREEN, RESET, (   *block ).index                 );
-			println!( "{}Asset{}:",              GREEN, RESET                                     );
-			println!( "    {}Name{}: {}",        GREEN, RESET, ( ( *block ).asset )[ "name" ]     );
-			println!( "    {}Type{}: {}",        GREEN, RESET, ( ( *block ).asset )[ "type" ]     );
-			println!( "    {}Quantity{}: {}",    GREEN, RESET, ( ( *block ).asset )[ "quantity" ] );
-			println!( "{}Timestamp{}: {}",       GREEN, RESET, (   *block ).timestamp             );
-			println!( "{}Hash{}: {}",            GREEN, RESET, (   *block ).hash                  );
-			println!( "{}Previous hash{}: {}\n", GREEN, RESET, (   *block ).previous_hash         );
+			println!( "Block {}:", block_number                                                       );
+			println!( "    {}Owner{}: {}",           GREEN, RESET, (   *block ).owner                 );
+			println!( "    {}Index{}: {}",           GREEN, RESET, (   *block ).index                 );
+			println!( "    {}Asset{}:",              GREEN, RESET                                     );
+			println!( "        {}Name{}: {}",        GREEN, RESET, ( ( *block ).asset )[ "name" ]     );
+			println!( "        {}Type{}: {}",        GREEN, RESET, ( ( *block ).asset )[ "type" ]     );
+			println!( "        {}Quantity{}: {}",    GREEN, RESET, ( ( *block ).asset )[ "quantity" ] );
+			println!( "    {}Timestamp{}: {}",       GREEN, RESET, (   *block ).timestamp             );
+			println!( "    {}Hash{}: {}",            GREEN, RESET, (   *block ).hash                  );
+			println!( "    {}Previous hash{}: {}\n", GREEN, RESET, (   *block ).previous_hash         );
+			block_number = block_number + 1;
 		}
 	}
 
@@ -143,7 +146,7 @@ impl Blockchain {
 			"name"     => asset.insert(     "name".to_string(), update_to.to_string() ),
 			"type"     => asset.insert(     "type".to_string(), update_to.to_string() ),
 			"quantity" => asset.insert( "quantity".to_string(), update_to.to_string() ),
-			_          => panic!( "{}Invalid argument{} in update_asset( &str, &str ) function!", RED, RESET ),
+			_          => panic!( "{}Invalid argument in update_asset( &str, &str ) function!{}", RED, RESET ),
 		};
 
 		// Update timestamp
@@ -168,7 +171,7 @@ impl Blockchain {
 		// Push new block into blockchain
 		( self.blockchain ).push( new_block );
 
-		println!( "\nThe asset was {}successfully{} updated!\n", GREEN, RESET );
+		println!( "The asset was {}successfully{} updated!\n", GREEN, RESET );
 	}
 
 	pub fn check_chain_valid( &self ) {
@@ -200,6 +203,6 @@ impl Blockchain {
 			}
 		}
 
-		println!( "\nValid?: {}\n", check_result );
+		println!( "Valid?: {}\n", check_result );
 	}
 }

@@ -37,7 +37,7 @@ fn stringfy_hashmap( hashmap : &HashMap<String, String> ) -> String {
 	let asset_composition : [ &str; 3 ] = [ "name", "type", "quantity" ];
 
 	// Define last element of asset composition
-	let last_element : &str = asset_composition[ asset_composition.len() - 1];
+	let last_element : &str = asset_composition[ asset_composition.len() - 1 ];
 
 	// Start stringfy
 	let mut hashmap_str : String = "{".to_string();
